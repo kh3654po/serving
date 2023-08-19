@@ -189,6 +189,7 @@ class RestApiRequestDispatcher {
     if (http_status == net_http::HTTPStatusCode::OK) {
       RecordRequestLatency(model_name, /*api=*/method, /*entrypoint=*/"REST",
                            Env::Default()->NowMicros() - start);
+      VLOG(1) << "Complete Processing HTTP/REST request" << req->http_method();
     } else {
       VLOG(1) << "Error Processing HTTP/REST request: " << req->http_method()
               << " " << req->uri_path() << " Error: " << status.ToString();
